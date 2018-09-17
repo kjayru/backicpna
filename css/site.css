@@ -253,3 +253,6 @@ ul.pagination li a {
 .paginador {
   padding: 20px 10px;
 }
+ul.pagination .active a {
+  background: orange;
+}

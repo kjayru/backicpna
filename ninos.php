@@ -49,7 +49,7 @@ home::estoy();
             <nav class="cms__nav">
                 <a class="cms__nav__enlace" href="adultos.php">Programa jóvenes y adultos</a>
                 <a class="cms__nav__enlace act" href="ninos.php">Programa niños</a>
-                <a class="cms__nav__enlace cms__nav__enlace--salir" href="#">Cerrar Sesión</a>
+                <a class="cms__nav__enlace cms__nav__enlace--salir" href="logout.php">Cerrar Sesión</a>
                 <div class="clear"></div>
             </nav>
         </header>
@@ -94,7 +94,7 @@ home::estoy();
             </table>
             <div class="paginador">
             <?php 
-                $page = 1;
+               
                 $paging = $resultados['cantidad'];
                 $total = ceil($resultados['total']-1);
                 
