@@ -1,0 +1,27 @@
+{
+    "name": "backend-ipcna",
+    "description": "Gestión de registros",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Wile Tinoco",
+            "email": "wile.tinoco@havas.com"
+        }
+    ],
+    "require": {
+      
+        "econea/nusoap": "^0.9.6",
+        "illuminate/database": "^5.7",
+        "phpixie/paginate-orm": "^3.2",
+        "phpixie/paginate": "^3.1",
+        "vespula/paginator": "^1.0",
+        "zendframework/zend-diactoros": "^1.8"
+    },
+    "autoload": {
+        "psr-4": {
+           "Controllers\\": "app/controllers/",
+           "Models\\": "app/models" 
+               }
+   
+    }
+}
