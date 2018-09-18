@@ -11,9 +11,10 @@ $uri = new Uri('/cms/adultos.php');
 
 use Controllers\Home; 
 use Controllers\Registros;
+
 $page = $_GET['page'];
 if(!$page){
- $page = 1;
+ $page = 0;
 }
 home::estoy();
 

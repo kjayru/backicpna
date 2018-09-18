@@ -1,55 +1,74 @@
-<?php 
-header("Content-Type: application/vnd.ms-excel; charset=utf-8");
-header("Content-Disposition: attachment; filename=registros-ninos.xls");
-header("Pragma: no-cache");
-header ("Expires: 0");
+<?php require_once('start.php');
 
-$cnx = new mysqli('localhost', 'icpna', '874oRRQRtmN#','icpna');
-$cnx->set_charset("utf8");
-//$sql = 'SELECT * FROM registros WHERE formulario="ninos" ORDER BY fecha DESC';
-$sql = 'SELECT * FROM registros WHERE programa="Programa para Niños" ORDER BY fecha DESC';
-$result = $cnx->query($sql);
+use Maatwebsite\Excel\Classes\PHPExcel;
 
-?>
-    <table width="100%" border="1">
-        <tr>
-            <td><strong>NOMBRES</strong></td>
-            <td><strong>APELLIDOS</strong></td>
-            <td><strong>TIPO DE DOCUMENTO</strong></td>
-            <td><strong>NUMERO DE DOCUMENTO</strong></td>
-            <td><strong>CELULAR</strong></td>
-            <td><strong>CORREO</strong></td>
-            <td><strong>SEDE</strong></td>
-            <td><strong>PROGRAMA</strong></td>
-            <td><strong>PUBLICIDAD</strong></td>
-            <td><strong>UTM_SOURCE</strong></td>
-            <td><strong>UTM_MEDIUM</strong></td>
-            <td><strong>UTM_CAMPAIGN</strong></td>
-            <td><strong>UTM_TERM</strong></td>
-            <td><strong>UTM_CONTENT</strong></td>
-            <td><strong>GCLID</strong></td>
-            <td><strong>FECHA</strong></td>
-        </tr>
-		
-		<?php while ($list = $result->fetch_assoc()) { ?>
-        <tr>
-        	<td><?php echo  utf8_decode($list["nombres"]); ?></td>
-			<td><?php echo  utf8_decode($list["apellidos"]); ?></td>
-			<td><?php echo  utf8_decode($list["tipodocumento"]); ?></td>
-			<td><?php echo  utf8_decode($list["numerodocumento"]); ?></td>
-			<td><?php echo  utf8_decode($list["celular"]); ?></td>
-			<td><?php echo  utf8_decode($list["correo"]); ?></td>
-			<td><?php echo  utf8_decode($list["sedes"]); ?></td>
-			<td><?php echo  utf8_decode($list["programa"]); ?></td>
-            <td><?php echo  utf8_decode($list["pauta"]); ?></td>
-			<td><?php echo  utf8_decode($list["utm_source"]); ?></td>
-			<td><?php echo  utf8_decode($list["utm_medium"]); ?></td>
-			<td><?php echo  utf8_decode($list["utm_campaign"]); ?></td>
-			<td><?php echo  utf8_decode($list["utm_term"]); ?></td>
-			<td><?php echo  utf8_decode($list["utm_content"]); ?></td>
-			<td><?php echo  utf8_decode($list["gclid"]); ?></td>
-			<td><?php echo  utf8_decode($list["fecha"]); ?></td>
-        </tr>
-        <?php } ?>
+use Controllers\Registros;
+use Controllers\Home;
+home::estoy();
 
-    </table>
+$objPHPExcel = new PHPExcel();
+
+$objPHPExcel->getProperties()->setCreator("HAVAS WORLD WIDE")
+							 ->setLastModifiedBy("DESARROLLO")
+							 ->setTitle("Office 2007 XLSX Test Document")
+							 ->setSubject("Office 2007 XLSX Test Document")
+							 ->setDescription("Test document for Office 2007 XLSX")
+							 ->setKeywords("office 2007 openxml php")
+							 ->setCategory("REGISTROS");
+
+$objPHPExcel->setActiveSheetIndex(0)
+            ->setCellValue('A1', 'NOMBRES')
+            ->setCellValue('B1', 'APELLIDOS')
+            ->setCellValue('C1', 'TIPO DOCUMENTO')
+            ->setCellValue('D1', 'NUMERO DE DOCUMENTO')
+            ->setCellValue('E1', 'CELULAR')
+			->setCellValue('F1', 'CORREO')
+			->setCellValue('G1', 'SEDE')
+            ->setCellValue('H1', 'PROGRAMA')
+            ->setCellValue('I1', 'PUBLICIDAD')
+            ->setCellValue('J1', 'UTM_SOURCE')
+            ->setCellValue('K1', 'UTM_MEDIUM')
+            ->setCellValue('L1', 'UTM_CAMPAIGN')
+            ->setCellValue('M1', 'UTM_TERM')
+            ->setCellValue('N1','UTM_CONTENT')
+            ->setCellValue('O1','GCLID')
+            ->setCellValue('P1','FECHA');
+			
+$registros = Registros::getNinos();
+
+foreach($registros as $key => $resultado){
+	$k = $key+2;  
+	$objPHPExcel->getActiveSheet()->setCellValue('A' . $k, $resultado->nombres )
+	                              ->setCellValue('B' . $k,  $resultado->apellidos)
+	                              ->setCellValue('C' . $k,  $resultado->tipodocumento)
+	                              ->setCellValue('D' . $k,  $resultado->numerodocumento)
+	                              ->setCellValue('E' . $k,  $resultado->celular)
+								  ->setCellValue('F' . $k,  $resultado->correo)
+                                  ->setCellValue('G' . $k,  $resultado->sedes)
+                                  ->setCellValue('H' . $k,  $resultado->programa)
+	                              ->setCellValue('I' . $k,  $resultado->pauta)
+								  ->setCellValue('J' . $k,  $resultado->utm_source)
+                                  ->setCellValue('K' . $k,  $resultado->utm_medium)
+                                  ->setCellValue('L' . $k,  $resultado->utm_campaign)
+	                              ->setCellValue('M' . $k,  $resultado->utm_term)
+								  ->setCellValue('N' . $k,  $resultado->utm_content)
+                                  ->setCellValue('O' . $k,  $resultado->gclid)
+                                  ->setCellValue('P' . $k,  $resultado->fecha);                                                                
+}
+
+
+$objPHPExcel->getActiveSheet()->setTitle('Jóvenes y Adultos');
+$objPHPExcel->setActiveSheetIndex(0);
+
+header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+header('Content-Disposition: attachment;filename="registros-ninos-'.uniqid().'.xlsx"');
+header('Cache-Control: max-age=0');
+header('Cache-Control: max-age=1');
+
+header ('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); 
+header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT'); 
+header ('Cache-Control: cache, must-revalidate'); 
+header ('Pragma: public'); 
+
+$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+$objWriter->save('php://output');

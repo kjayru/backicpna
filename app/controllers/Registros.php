@@ -38,5 +38,18 @@ class Registros{
     }
 
 
+    public static function  getAdultos(){
+        $registros = Registro::where('formulario','adultos')->get();
+
+        return $registros;
+    }
+
+    public static function  getNinos(){
+        $registros = Registro::where('formulario',"ninos")->get();
+
+        return $registros;
+    }
+
+
 }
  

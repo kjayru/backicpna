@@ -13,7 +13,7 @@ use Controllers\Home;
 use Controllers\Registros;
 $page = $_GET['page'];
 if(!$page){
- $page = 1;
+ $page = 0;
 }
 home::estoy();
 ?>
@@ -78,7 +78,7 @@ home::estoy();
                 foreach($resultados["registros"] as $key => $f):
                 ?>
                 <tr>
-                <th><?php $key+1; ?></th>
+                <th><?php echo $key + 1; ?></th>
                     <td style="text-transform: capitalize;"><?php echo $f['nombres']; ?></td>
                     <td><?php echo $f['tipodocumento']; ?></td>
                     <td><?php echo $f['numerodocumento']; ?></td>
