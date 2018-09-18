@@ -60,6 +60,7 @@ foreach($registros as $key => $resultado){
 $objPHPExcel->getActiveSheet()->setTitle('Jóvenes y Adultos');
 $objPHPExcel->setActiveSheetIndex(0);
 
+
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 header('Content-Disposition: attachment;filename="registros-ninos-'.uniqid().'.xlsx"');
 header('Cache-Control: max-age=0');

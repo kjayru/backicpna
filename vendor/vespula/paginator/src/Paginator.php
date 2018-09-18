@@ -153,7 +153,7 @@ class Paginator
         }
         
         if ($page < 1) {
-            $page = 1;
+            $page = 0;
         }
         
         $this->page = $page;
@@ -209,7 +209,7 @@ class Paginator
         $start = $end - ($page_count-1);
         if ($start < 1) {
            
-            $start = 1;
+            $start = 0;
         }
        
 

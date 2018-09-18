@@ -47,4 +47,21 @@ $(document).on('ready', function(){
 		}
 	});
 
+
+
 })
+$(window).load(function(){
+	gurl = window.location.href;
+
+	pat = gurl.split('?');
+	console.log(pat[1]);
+	if(pat[1]){
+		$(".adultodiv .pagination li:first-child").before(`<li class="pri"><a href="/cms/adultos.php">0</a></li>`);
+		$(".ninosdiv .pagination li:first-child").before(`<li class="pri"><a href="/cms/ninos.php">0</a></li>`);
+	}else{
+		$(".adultodiv .pagination li:first-child").before(`<li class="active pri"><a href="/cms/adultos.php">0</a></li>`);
+		$(".ninosdiv .pagination li:first-child").before(`<li class="active pri"><a href="/cms/ninos.php">0</a></li>`);
+	}
+
+	
+});

@@ -21,6 +21,7 @@ return array(
     'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-message/src'),
     'Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
     'PhpParser\\' => array($vendorDir . '/nikic/php-parser/lib/PhpParser'),
+    'PhpOffice\\PhpSpreadsheet\\' => array($vendorDir . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet'),
     'PHPixie\\Tests\\' => array($vendorDir . '/phpixie/database/tests/PHPixie/Tests', $vendorDir . '/phpixie/orm/tests/PHPixie/Tests', $vendorDir . '/phpixie/paginate/tests/PHPixie/Tests', $vendorDir . '/phpixie/paginate-orm/tests/PHPixie/Tests', $vendorDir . '/phpixie/slice/tests/PHPixie/Tests'),
     'PHPixie\\' => array($vendorDir . '/phpixie/database/src/PHPixie', $vendorDir . '/phpixie/orm/src/PHPixie', $vendorDir . '/phpixie/paginate/src/PHPixie', $vendorDir . '/phpixie/paginate-orm/src/PHPixie', $vendorDir . '/phpixie/slice/src/PHPixie'),
     'Models\\' => array($baseDir . '/app/models'),
@@ -33,5 +34,6 @@ return array(
     'Illuminate\\Cache\\' => array($vendorDir . '/illuminate/cache'),
     'Doctrine\\Common\\Inflector\\' => array($vendorDir . '/doctrine/inflector/lib/Doctrine/Common/Inflector'),
     'Controllers\\' => array($baseDir . '/app/controllers'),
+    'Complex\\' => array($vendorDir . '/markbaker/complex/classes/src'),
     '' => array($vendorDir . '/nesbot/carbon/src'),
 );

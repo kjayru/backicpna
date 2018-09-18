@@ -256,3 +256,6 @@ ul.pagination li a {
 ul.pagination .active a {
   background: orange;
 }
+.pri{
+  margin-right: 3px;
+}

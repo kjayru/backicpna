@@ -92,7 +92,7 @@ home::estoy();
                 ?>
                 
             </table>
-            <div class="paginador">
+            <div class="paginador ninosdiv">
             <?php 
                
                 $paging = $resultados['cantidad'];
@@ -106,7 +106,7 @@ home::estoy();
 
         <script src="js/vendor/jquery.js"></script>
         <script src="js/plugins.js"></script>
-        <script src="js/main.js?version=<?php echo rand(11111,99999); ?>"></script>
+        <script src="js/main.js?version=<?php echo uniqid(); ?>"></script>
         <script>
           /*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

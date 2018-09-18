@@ -100,7 +100,7 @@ home::estoy();
                 ?>
                 
             </table>
-            <div class="paginador">
+            <div class="paginador adultodiv">
             <?php 
               
                 $paging = $resultados['cantidad'];
